@@ -43,20 +43,20 @@ function message_edge(pm) {
 		if(pm.layer.match(/message/) || $.isNumeric(pm.layer)){
 			layer = $("."+pm.layer+"_fore");
 			if(pm.find == "chara_name") layer = layer.find(".chara_name_area");
-			else if(pm.find == "message")layer = layer.find(".message_inner");
+			else if(pm.find == "message") layer = layer.find(".message_inner");
 		}else{
 			layer = $("."+pm.layer);
 			if(pm.find) layer = layer.find("."+pm.find);
 		}
-		if(pm.clear) layer.css("text-shadow","initial");
+		if(pm.clear!="false") layer.css("text-shadow","initial");
 		else layer.css("text-shadow",edge);
 	}else{
 		var num = parseInt(TYRANO.kag.config.numMessageLayers);
 		for (var i=0; i< num ; i++) {
 			layer = $(".message"+ i +"_fore");
 			if(pm.find == "chara_name") layer = layer.find(".chara_name_area");
-			else if(pm.find == "message")layer = layer.find(".message_inner");
-			if(pm.clear) layer.css("text-shadow","initial");
+			else if(pm.find == "message") layer = layer.find(".message_inner");
+			if(pm.clear!="false") layer.css("text-shadow","initial");
 			else layer.css("text-shadow",edge);
 		}
 	}

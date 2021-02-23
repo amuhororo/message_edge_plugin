@@ -86,7 +86,16 @@ module.exports = class plugin_setting {
                     icon_color : "#FFFF99", /*変更しない*/
                     category : "plugin" /*変更しない*/
                 },
-
+								header:function(e){
+									var edge_find="";
+									var edge_clear="";
+									if(e.data.pm.find=="")edge_find="全て";
+									else if(e.data.pm.find=="chara_name")edge_find="キャラ名のみ";
+									else if(e.data.pm.find=="message")edge_find="メッセージのみ";
+									//if(e.data.pm.vertical==true)edge_clear="縦書き";
+									//if(e.data.pm.clear==true)edge_clear="削除";
+									return edge_find //+ " " + edge_clear
+								},
                 /*変更しない*/
                 param_view : {
                 },
@@ -115,7 +124,7 @@ module.exports = class plugin_setting {
 
 									"clear" : {
 											type : "Check",   /*パラメータのタイプです。これは画像選択の場合*/
-											text : TB.$.s("影・縁取りを削除※優先"),
+											text : TB.$.s("削除 ※優先"),
 											/*name : TB.$.s("削除"),*/
 											help : TB.$.s("チェックが入っている場合は「削除」が優先されます。"),
 											default_val : false
@@ -123,7 +132,7 @@ module.exports = class plugin_setting {
 
 									"vertical" : {
 											type : "Check",   /*パラメータのタイプです。これは画像選択の場合*/
-											text : TB.$.s("縦書きの"),
+											text : TB.$.s("縦書き"),
 											/*name : TB.$.s("縦書き"),*/
 											help : TB.$.s("縦書きの場合はチェックを入れてください。影の付く方向が変わります。"),
 											default_val : false
