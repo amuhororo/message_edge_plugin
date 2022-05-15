@@ -89,9 +89,9 @@ module.exports = class plugin_setting {
 				header:function(e){
 					let edge_find="";
 					let edge_clear="";
-					if(e.data.pm.find=="")edge_find="全て";
-					else if(e.data.pm.find=="chara_name")edge_find="キャラ名のみ";
-					else if(e.data.pm.find=="message")edge_find="メッセージのみ";
+					if(e.data.pm.find=="")edge_find="両方";
+					else if(e.data.pm.find=="chara_name")edge_find="キャラ名";
+					else if(e.data.pm.find=="message")edge_find="メッセージ";
 					if(e.data.pm.vertical==true)edge_clear="縦書き";
 					if(e.data.pm.clear==true)edge_clear="削除";
 					return edge_find + " " + edge_clear

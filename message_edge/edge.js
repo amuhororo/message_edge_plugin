@@ -30,6 +30,10 @@ memocho.tag.message_edge = {
 		let edge = "";
 		let shadow = "";
 		let layer;
+		const find = {
+			"chara_name" : ".chara_name_area",
+			"message" : ".message_inner"
+		};
 
 		//縁取り
 		if(pm.edge){
@@ -57,23 +61,29 @@ memocho.tag.message_edge = {
 
 		if(pm.layer){
 			if(pm.layer.match(/message/) || $.isNumeric(pm.layer)){
-				layer = $("."+pm.layer+"_fore");
-				if(pm.find == "chara_name") layer = layer.find(".chara_name_area");
-				else if(pm.find == "message")layer = layer.find(".message_inner");
+				for (let key in find) {
+					if(!pm.find || pm.find == key){
+						layer = $("."+pm.layer+"_fore").find(find[key]);
+						if(pm.clear == "true") layer.css("text-shadow","");
+						else layer.css("text-shadow",edge);
+					}
+				}
 			}else{
 				layer = $("."+pm.layer);
 				if(pm.find) layer = layer.find("."+pm.find);
-			}
-			if(pm.clear == "true") layer.css("text-shadow","initial");
-			else layer.css("text-shadow",edge);
-		}else{
-			var num = parseInt(TYRANO.kag.config.numMessageLayers);
-			for (var i=0; i< num ; i++) {
-				layer = $(".message"+ i +"_fore");
-				if(pm.find == "chara_name") layer = layer.find(".chara_name_area");
-				else if(pm.find == "message") layer = layer.find(".message_inner");
-				if(pm.clear == "true") layer.css("text-shadow","initial");
+				if(pm.clear == "true") layer.css("text-shadow","");
 				else layer.css("text-shadow",edge);
+			}
+		}else{
+			const num = parseInt(TYRANO.kag.config.numMessageLayers);
+			for (let i=0; i< num ; i++) {
+				for (let key in find) {
+					if(!pm.find || pm.find == key){
+						layer = $(".message"+ i +"_fore").find(find[key]);
+						if(pm.clear == "true") layer.css("text-shadow","");
+						else layer.css("text-shadow",edge);
+					}
+				}
 			}
 		}
 		TYRANO.kag.ftag.nextOrder();
