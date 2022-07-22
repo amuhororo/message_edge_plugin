@@ -1,5 +1,5 @@
 //【メッセージ縁取りプラグイン】
-// Ver.3.02 2022/5/22
+// Ver.3.03 2022/7/22
 // by hororo https://memocho.no-tenki.me/
 
 (function(){
@@ -19,14 +19,13 @@
 			//初期値設定 *flagはビルダー用
 			if(pm.edge_flag == "false") pm.edge = "";
 			if(pm.shadow_flag == "false") pm.shadow = "";
-			let edge = "";
+			let edge = [];
 			let shadow = "";
 			let layer;
 
 			//縁取り
 			if(pm.edge){
 				pm.edge = $.convertColor(pm.edge);
-				edge = [];
 				edge[0] = pm.edge + ' ' + pm.edge_offset + 'px ' + pm.edge_offset + 'px ' + pm.edge_blur + 'px'; //上右
 				edge[1] = pm.edge + ' ' + pm.edge_offset + 'px -' + pm.edge_offset + 'px ' + pm.edge_blur + 'px'; //上左
 				edge[2] = pm.edge + ' -' + pm.edge_offset + 'px -' + pm.edge_offset + 'px ' + pm.edge_blur + 'px'; //下右
